@@ -7,26 +7,38 @@ class Application(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
+        self.fondo = tk.PhotoImage(file="uni.png")
+        self.background = tk.Label(image=self.fondo,text="hola").pack()
         self.botonForrester = tk.Button(self)
         self.botonTabla = tk.Button(self)
         self.botonComportamiento = tk.Button(self)
         self.botonForrester["text"] = "FORRESTER"
-        self.botonForrester["command"] = self.say_hi
+        self.botonForrester["command"] = self.abrirForrester
         self.botonForrester.pack(side="top")
         self.botonTabla["text"] = "TABLA"
-        self.botonTabla["command"] = self.say_hi
+        self.botonTabla["command"] = self.abrirTabla
         self.botonTabla.pack(side="top")
         self.botonComportamiento["text"] = "COMPORTAMIENTO"
-        self.botonComportamiento["command"] = self.say_hi
+        self.botonComportamiento["command"] = self.abrirComportamiento
         self.botonComportamiento.pack(side="top")
 
         self.QUIT = tk.Button(self, text="QUIT", fg="red",
                                             command=root.destroy)
         self.QUIT.pack(side="bottom")
 
-    def say_hi(self):
+    def abrirForrester(self):
         root = tk.Tk()
         app = Forrester(master=root)
+        app.mainloop()
+
+    def abrirTabla(self):
+        root = tk.Tk()
+        app = Tabla(master=root)
+        app.mainloop()
+
+    def abrirComportamiento(self):
+        root = tk.Tk()
+        app = Comportamiento(master=root)
         app.mainloop()
 
 class Forrester(tk.Frame):
@@ -37,6 +49,33 @@ class Forrester(tk.Frame):
     def createWidgets(self):
         self.mensaje = tk.Label(self,text="Bienvenido al Forrester").pack()
 
+class Tabla(tk.Frame):
+    def __init__(self, master=None):
+        tk.Frame.__init__(self, master)
+        self.pack()
+        self.createWidgets()
+    def createWidgets(self):
+        self.mensaje = tk.Label(self,text="Bienvenido a la Tabla").pack()
+
+class Comportamiento(tk.Frame):
+    def __init__(self, master=None):
+        tk.Frame.__init__(self, master)
+        self.pack()
+        self.createWidgets()
+    def createWidgets(self):
+        self.mensaje = tk.Label(self,text="Bienvenido al Comportamiento").pack()
+
 root = tk.Tk()
 app = Application(master=root)
 app.mainloop()
+
+
+# from tkinter import *
+#
+# root = Tk()
+#
+# imagen= PhotoImage(file="uni.png")
+#
+# Label(root, image=imagen, bd=0).pack()
+#
+# root.mainloop()
