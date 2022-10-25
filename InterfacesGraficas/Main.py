@@ -8,23 +8,25 @@ class Application(tk.Frame):
 
     def createWidgets(self):
         self.fondo = tk.PhotoImage(file="uni.png")
-        self.background = tk.Label(image=self.fondo,text="hola").pack()
-        self.botonForrester = tk.Button(self)
-        self.botonTabla = tk.Button(self)
-        self.botonComportamiento = tk.Button(self)
+        self.background = tk.Label(image=self.fondo, text="hola", bd=0)
+        self.fondo.re
+        self.botonForrester = tk.Button(self.background)
+        self.botonTabla = tk.Button(self.background)
+        self.botonComportamiento = tk.Button(self.background)
         self.botonForrester["text"] = "FORRESTER"
         self.botonForrester["command"] = self.abrirForrester
-        self.botonForrester.pack(side="top")
+        self.botonForrester.pack(side="top", expand=True)
         self.botonTabla["text"] = "TABLA"
         self.botonTabla["command"] = self.abrirTabla
-        self.botonTabla.pack(side="top")
+        self.botonTabla.pack(side="top", expand=True)
         self.botonComportamiento["text"] = "COMPORTAMIENTO"
         self.botonComportamiento["command"] = self.abrirComportamiento
-        self.botonComportamiento.pack(side="top")
+        self.botonComportamiento.pack(side="top", expand=True)
 
-        self.QUIT = tk.Button(self, text="QUIT", fg="red",
+        self.QUIT = tk.Button(self.background, text="QUIT", fg="red",
                                             command=root.destroy)
-        self.QUIT.pack(side="bottom")
+        self.QUIT.pack(side="bottom", expand=True)
+        self.background.pack(expand=True)
 
     def abrirForrester(self):
         root = tk.Tk()
@@ -47,7 +49,7 @@ class Forrester(tk.Frame):
         self.pack()
         self.createWidgets()
     def createWidgets(self):
-        self.mensaje = tk.Label(self,text="Bienvenido al Forrester").pack()
+        self.mensaje = tk.Label(self, text="Bienvenido al Forrester").pack()
 
 class Tabla(tk.Frame):
     def __init__(self, master=None):
@@ -66,6 +68,7 @@ class Comportamiento(tk.Frame):
         self.mensaje = tk.Label(self,text="Bienvenido al Comportamiento").pack()
 
 root = tk.Tk()
+root.geometry("475x468")
 app = Application(master=root)
 app.mainloop()
 
